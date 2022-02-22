@@ -1,28 +1,20 @@
-provider "aws" {
-  region = var.region
+terraform {
+  required_providers { 
+    r = {
+      source  = "hashicorp/random"
+      version = "3.1.0"
+    }
+  }
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
+provider "r" {
+  # Configuration options
 }
 
-resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+resource "random_pet" "pet" {
+  length = 5
+}
 
-  tags = {
-    Name = var.instance_name
-  }
+output "p" {
+  value = "${random_pet.pet.id}"
 }
