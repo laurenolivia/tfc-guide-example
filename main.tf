@@ -7,9 +7,6 @@ terraform {
   }
 }
 
-provider "r" {
-  # Configuration options
-}
 
 resource "random_pet" "pet" {
   length = 5
