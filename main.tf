@@ -9,7 +9,7 @@ terraform {
 
 
 resource "random_pet" "pet" {
-  length = 5
+  length = 7
 }
 
 output "p" {
